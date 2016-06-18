@@ -2,7 +2,7 @@ describe("Piece", function() {
   var piece;
 
   beforeEach(function() {
-    piece = new Piece(0, 10, null);
+    piece = new Piece(0, 10);
   });
 
   it("should have 3 or 4 offsets", function() {

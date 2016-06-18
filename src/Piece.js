@@ -2,13 +2,13 @@
 // constructor: piece
 //
 
-function Piece(row, col, index) {
+function Piece(row, col, index = null) {
   // save location
   this.row = row;
   this.col = col;
 
-  // select random Tetris piece
-  this.index = index || Math.floor(Math.random()*Piece.prototype.patterns.length)
+  // select requested or random Tetris piece
+  this.index = index || Math.floor(Math.random()*Piece.prototype.offsets.length)
 
   // set piece color, initial rotation
   this.color = Piece.prototype.colors[this.index];  // HTML color
@@ -18,6 +18,7 @@ function Piece(row, col, index) {
   this.offsets = Piece.prototype.offsets[this.index];
 }
 
+// movement
 Piece.prototype.moveDown = function() {
   this.row += 1;
 };
@@ -30,6 +31,7 @@ Piece.prototype.moveRight = function() {
   this.col += 1;
 };
 
+// rotation
 Piece.prototype.rotate = function() {
   if (this.offsets.length == 3) {
     // rotate 3x3 piece
@@ -55,10 +57,12 @@ Piece.prototype.rotate = function() {
   }
 };
 
+// colors of pieces
 Piece.prototype.colors = [
   "blue", "green"
 ];
 
+// offset from NW corner of each block in piece
 Piece.prototype.offsets = [
   [ [0,1], [1,1], [2,1], [2,2] ], // - * -
                                   // - * -
