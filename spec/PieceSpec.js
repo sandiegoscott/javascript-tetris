@@ -2,20 +2,28 @@ describe("Piece", function() {
   var piece;
 
   beforeEach(function() {
-    piece = new Piece();
+    piece = new Piece(0, 10, null);
   });
 
-  it("should have the proper array depth in the patterns", function() {
-    var pattern = 0;
-    var rotation = 0;
-    var cell = 0;
-    var dimension = 0;
-    x_or_y_value = piece.patterns[pattern][rotation][cell][dimension];
-    expect(typeof x_or_y_value).toEqual("number");
+  it("should have 3 or 4 offsets", function() {
+    expect([3, 4]).toContain(piece.offsets.length);
   });
 
   it("should move down properly", function() {
+    row = piece.row
     piece.moveDown();
-    expect(piece.position).toEqual(1);
+    expect(piece.row).toEqual(row + 1);
+  });
+
+  it("should move right properly", function() {
+    col = piece.col
+    piece.moveRight();
+    expect(piece.col).toEqual(col + 1);
+  });
+
+  it("should move left properly", function() {
+    col = piece.col
+    piece.moveLeft();
+    expect(piece.col).toEqual(col - 1);
   });
 });
