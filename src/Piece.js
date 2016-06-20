@@ -1,70 +1,65 @@
-//
-// constructor: piece
-//
-
 function Piece(row, col, index = null) {
-  // save location
-  this.row = row;
-  this.col = col;
+  //
+  // actively falling Tetris piece
+  //
+  var size, color, offsets, offset, position;
 
   // select requested or random Tetris piece
   this.index = index || Math.floor(Math.random()*Piece.prototype.offsets.length)
 
-  // set piece color, initial rotation
-  this.color = Piece.prototype.colors[this.index];  // HTML color
-  this.rotation = 0;  // 0, 1, 2, 3
-
-  // set offsets
-  this.offsets = Piece.prototype.offsets[this.index];
+  // create cells
+  offsets = Piece.prototype.offsets[this.index];
+  size = offsets.length;
+  color = this.colors[index];
+  this.cells = [ ];
+  for (i = 0; i < offsets.length; i++) {
+    offset = offsets[i];
+    position = [offset[0] + row, offset[1] + col];
+    cells.push(new Cell(offset, position, size, color));
+  }
 }
 
 // movement
 Piece.prototype.moveDown = function() {
-  this.row += 1;
+  for (i = 0; i < this.cells.length; i++) {
+    this.cells[i].moveDown();
+  }
 };
 
 Piece.prototype.moveLeft = function() {
-  this.col -= 1;
+  for (i = 0; i < this.cells.length; i++) {
+    this.cells[i].moveLeft();
+  }
 };
 
 Piece.prototype.moveRight = function() {
-  this.col += 1;
+  for (i = 0; i < this.cells.length; i++) {
+    this.cells[i].moveRight();
+  }
 };
 
 // rotation
 Piece.prototype.rotate = function() {
-  if (this.offsets.length == 3) {
-    // rotate 3x3 piece
-    for (i = 0; i < this.offsets.length; i++) {
-      let offset = this.offsets[i];
-      // rotate corners
-      if      (offset[0] == 0 && offset[1] == 0) { offset[0] += 2; }
-      else if (offset[0] == 2 && offset[1] == 0) { offset[1] += 2; }
-      else if (offset[0] == 2 && offset[1] == 2) { offset[0] -= 2; }
-      else if (offset[0] == 0 && offset[1] == 2) { offset[1] -= 2; }
-      // rotate sides
-      if      (offset[0] == 0 && offset[1] == 1) { offset[0] += 1; offset[1] -= 1; }
-      else if (offset[0] == 1 && offset[1] == 0) { offset[0] += 1; offset[1] += 1; }
-      else if (offset[0] == 2 && offset[1] == 1) { offset[0] -= 1; offset[1] += 1; }
-      else if (offset[0] == 1 && offset[1] == 2) { offset[0] -= 1; offset[1] -= 1; }
-      // store changes
-      this.offsets[i] = offset;
-    }
-    this.rotation = (this.rotation + 1) % 4;
-    // rotate 4x4 piece
-  } else {
-
+  for (i = 0; i < this.cells.length; i++) {
+    this.cells[i].rotate();
   }
 };
 
-// colors of pieces
+// ========== data ==========
+
+// data: colors of pieces
 Piece.prototype.colors = [
   "blue", "green"
 ];
 
-// offset from NW corner of each block in piece
+// data: sizes of pieces
+Piece.prototype.sizes = [
+  3, 4
+];
+
+// data: offset from SW corner of each block in piece
 Piece.prototype.offsets = [
-  [ [0,1], [1,1], [2,1], [2,2] ], // - * -
+  [ [0,1], [0,2], [1,1], [2,1] ], // - * -
                                   // - * -
                                   // - * *
   [ [0,1], [1,1], [2,1], [3,1]],  // - * - -
