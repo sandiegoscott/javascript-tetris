@@ -1,21 +1,33 @@
-function Piece(row, col, index = null) {
+function Piece(rr, cc, index = null) {
   //
   // actively falling Tetris piece
   //
-  var size, color, offsets, offset, position;
+  var row_dif, col_dif, row, col, size, color, offsets, offset, cell;
 
   // select requested or random Tetris piece
   this.index = index || Math.floor(Math.random()*Piece.prototype.offsets.length)
 
   // create cells
   offsets = Piece.prototype.offsets[this.index];
+  console.log("1111");
   size = offsets.length;
-  color = this.colors[index];
+  color = Piece.prototype.colors[this.index];
   this.cells = [ ];
   for (i = 0; i < offsets.length; i++) {
+    console.log(i);
     offset = offsets[i];
-    position = [offset[0] + row, offset[1] + col];
-    cells.push(new Cell(offset, position, size, color));
+    console.log(offset);
+    row_dif = offset[0];
+    col_dif = offset[1];
+    row = row_dif + rr;
+    col = col_dif + cc;
+    console.log("2222");
+    cell = new Cell(row_dif, col_dif, row, col, size, color);
+    console.log("3333");
+    this.cells.push(cell);
+    console.log("4444");
+    console.log(this.cells.length)
+    console.log("5555");
   }
 }
 
