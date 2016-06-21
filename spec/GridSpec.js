@@ -26,4 +26,19 @@ describe("The grid", function() {
     piece.moveDown();
     expect(grid.collision(piece)).toEqual(false);
   });
+
+  it("should anticipate collision under certain conditions", function() {
+    // put the piece into the grid, down 4 rows
+    piece.moveDown();
+    piece.moveDown();
+    piece.moveDown();
+    piece.moveDown();
+    grid.addPiece(piece);
+    // check with a new piece
+    var piece2;
+    piece2 = new Piece(10, 12, 0);
+    expect(grid.will_collide(piece2)).toEqual(false);
+    piece2.moveDown();
+    expect(grid.will_collide(piece2)).toEqual(true);
+  });
 });

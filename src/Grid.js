@@ -31,3 +31,16 @@ Grid.prototype.collision = function(piece) {
     }
     return false;
 }
+
+// anticipate collision of piece with occupied cells
+Grid.prototype.will_collide = function(piece) {
+    for (i = 0; i < piece.cells.length; i++) {
+      cell = piece.cells[i];
+      for (j = 0; j < this.cells.length; j++) {
+        if (this.cells[j].collision(cell.row - 1, cell.col)) {
+          return true;
+        }
+      }
+    }
+    return false;
+}
