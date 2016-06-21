@@ -1,4 +1,4 @@
-function Piece(rr, cc, index = null) {
+function Piece(row_origin, col_origin, index = null) {
   //
   // actively falling Tetris piece
   //
@@ -16,8 +16,8 @@ function Piece(rr, cc, index = null) {
     offset = offsets[i];
     row_dif = offset[0];
     col_dif = offset[1];
-    row = row_dif + rr;
-    col = col_dif + cc;
+    row = row_origin + row_dif;
+    col = col_origin + col_dif;
     cell = new Cell(row_dif, col_dif, row, col, size, color);
     this.cells.push(cell);
   }

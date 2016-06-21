@@ -1,4 +1,4 @@
-describe("Cell", function() {
+describe("A cell", function() {
   var piece;
 
   beforeEach(function() {
