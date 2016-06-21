@@ -5,7 +5,7 @@ function Piece(rr, cc, index = null) {
   var row_dif, col_dif, row, col, size, color, offsets, offset, cell;
 
   // select requested or random Tetris piece
-  this.index = index || Math.floor(Math.random()*Piece.prototype.offsets.length)
+  this.index = (index == 0) ? index : Math.floor(Math.random()*Piece.prototype.offsets.length)
 
   // create cells
   offsets = Piece.prototype.offsets[this.index];
