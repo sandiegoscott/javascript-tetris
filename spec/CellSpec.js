@@ -10,7 +10,9 @@ describe("A cell", function() {
   });
 
   it("should move down properly", function() {
+    spyOn(cell, 'move');
     cell.moveDown();
+    expect(cell.move).toHaveBeenCalledWith(-1, 0);
     expect(cell.row).toEqual(11);
     expect(cell.col).toEqual(15);
   });
@@ -27,7 +29,7 @@ describe("A cell", function() {
     expect(cell.col).toEqual(13);
   });
 
-  it("should rotate corners properly", function() {
+  it("should rotate corners properly for 3x3 pieces", function() {
     cell.rotate();
     expect(cell.row).toEqual(10);
     expect(cell.col).toEqual(15);
@@ -50,7 +52,7 @@ describe("A cell", function() {
     expect(cell.col_dif).toEqual(2);
   });
 
-  it("should rotate sides properly", function() {
+  it("should rotate sides properly for 3x3 pieces", function() {
     cell = new Cell(1, 0,  12, 15,  3, "#234567");
     cell.rotate();
     expect(cell.row).toEqual(13);
