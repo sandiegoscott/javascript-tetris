@@ -1,7 +1,7 @@
-
-var npieces = 1;
-var pieces = [];
-
-for (i = 0; i < npieces; i++) {
-  pieces[i] = new Piece(i);
-}
+//
+// global functions
+//
+function get(id)        { return document.getElementById(id);  }
+function hide(id)       { get(id).style.visibility = 'hidden'; }
+function show(id)       { get(id).style.visibility = null;     }
+function html(id, html) { get(id).innerHTML = html;            }
