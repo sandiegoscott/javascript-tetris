@@ -5,7 +5,6 @@ function Block(canvas, row, col, color) {
   this.canvas = canvas;
   this.row = row;
   this.col = col;
-  console.log('row=', row, '  col=', col)
   this.color = color;
   this.el = document.createElement('div');
   this.setStyle();
@@ -19,7 +18,6 @@ Block.prototype.setStyle = function() {
   style += 'height: ' + this.canvas.block_height + 'px; ';
   style += 'width: ' + this.canvas.block_width + 'px; ';
   style += 'border: 1px solid #333; background-color: ' + this.color + ';';
-  style += 'position: absolute';
+  style += 'position: absolute; box-sizing: border-box;';
   this.el.setAttribute('style', style);
-  //debugger;
 }
