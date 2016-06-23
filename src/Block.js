@@ -13,8 +13,11 @@ function Block(canvas, row, col, color) {
 
 Block.prototype.setStyle = function() {
   var style = '';
-  style += 'top: ' + (this.row * (this.canvas.block_height - 1) - 1) + 'px; ';
-  style += 'left: ' + (this.col * (this.canvas.block_width - 1) - 1) + 'px; ';
+  var top  = this.row * (this.canvas.block_height - 1) - 1;
+  var left = this.col * (this.canvas.block_width - 1) - 1;
+
+  style += 'top: ' + top + 'px; ';
+  style += 'left: ' + left + 'px; ';
   style += 'height: ' + this.canvas.block_height + 'px; ';
   style += 'width: ' + this.canvas.block_width + 'px; ';
   style += 'border: 1px solid #333; background-color: ' + this.color + ';';
