@@ -14,8 +14,8 @@ Canvas.prototype.setDimensions = function() {
   this.height = this.el.offsetHeight;
   this.width = this.el.offsetWidth;
   // compute size of blocks
-  this.block_height = Math.floor(this.height / this.rows);
-  this.block_width = Math.floor(this.width / this.cols);
+  this.block_height = Math.floor(this.height / this.rows) + 1;
+  this.block_width  = Math.floor(this.width / this.cols) + 1;
 }
 
 Canvas.prototype.addBlock = function(row, col, color) {
