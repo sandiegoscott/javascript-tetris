@@ -2,14 +2,14 @@ function Piece(canvas, row_origin, col_origin, index = null) {
   //
   // Tetris piece
   //
-  var row_dif, col_dif, row, col, size, color, offsets, offset, cell;
+  var row_dif, col_dif, row, col, side, color, offsets, offset, cell;
 
   // select requested or random Tetris piece
   this.index = (index == 0) ? index : Math.floor(Math.random()*Piece.prototype.offsets.length)
 
   // for shorter code
   offsets = Piece.prototype.offsets[this.index];
-  size = Piece.prototype.sizes[this.index];
+  side = Piece.prototype.sides[this.index];
   color = Piece.prototype.colors[this.index];
 
   // create cells
@@ -20,7 +20,7 @@ function Piece(canvas, row_origin, col_origin, index = null) {
     col_dif = offset[1];
     row = row_origin + row_dif;
     col = col_origin + col_dif;
-    cell = new Cell(canvas, row_dif, col_dif, row, col, size, color);
+    cell = new Cell(canvas, row_dif, col_dif, row, col, side, color);
     this.cells.push(cell);
   }
 }
@@ -58,8 +58,8 @@ Piece.prototype.colors = [
   "blue", "green"
 ];
 
-// data: sizes of pieces
-Piece.prototype.sizes = [
+// data: sides of pieces
+Piece.prototype.sides = [
   3, 4
 ];
 
