@@ -31,7 +31,13 @@ Canvas.prototype.collision = function(piece) {
     return false;
 }
 
-// adds blocks of piece into canvas
+// add block into canvas
+Canvas.prototype.addBlock = function(row, col, color) {
+  var block = new Block(this, row, col, color); 
+  this.blocks.push(block);
+}
+
+// add blocks of piece into canvas
 // !! IMPORTANT !! no new blocks are created!
 Canvas.prototype.addPiece = function(piece) {
   piece.blocks.map( (block) => { this.blocks.push(block); } );
