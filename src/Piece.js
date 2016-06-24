@@ -48,6 +48,34 @@ Piece.prototype.rotateLeft = function() {
   this.blocks.map( (block) => { block.rotateLeft(); } );
 };
 
+// detect collision with blocks of canvas
+Piece.prototype.collision = function() {
+  for (i = 0; i < this.blocks.length; i++) {
+    let block = this.blocks[i];
+    for (j = 0; j < canvas.blocks.length; j++) {
+      if (canvas.blocks[j].collision(block.row, block.col)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// detect out of bounds
+Piece.prototype.outOfBounds = function() {
+  for (i = 0; i < this.blocks.length; i++) {
+    let block = this.blocks[i];
+    if (block.col < 0 || block.col > self.cols - 1) { return true; }
+  }
+  return false;
+}
+
+// add blocks of piece into canvas
+// !! IMPORTANT !! no new blocks are created!
+Piece.prototype.addToCanvas = function() {
+  this.blocks.map( (block) => { canvas.blocks.push(block); } );
+}
+
 // ========== data ==========
 
 // data: colors of pieces
