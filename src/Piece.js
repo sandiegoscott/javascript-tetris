@@ -2,7 +2,7 @@ function Piece(canvas, row_origin, col_origin, index = null) {
   //
   // Tetris piece
   //
-  var row_dif, col_dif, row, col, side, color, offsets, offset, cell;
+  var drow, dcol, row, col, side, color, offsets, offset, block;
 
   // select requested or random Tetris piece
   this.index = (index == 0) ? index : Math.floor(Math.random()*Piece.prototype.offsets.length)
@@ -12,58 +12,54 @@ function Piece(canvas, row_origin, col_origin, index = null) {
   side = Piece.prototype.sides[this.index];
   color = Piece.prototype.colors[this.index];
 
-  // create cells
-  this.cells = [ ];
+  // create blocks
+  this.blocks = [ ];
   for (i = 0; i < offsets.length; i++) {
     offset = offsets[i];
-    row_dif = offset[0];
-    col_dif = offset[1];
-    row = row_origin + row_dif;
-    col = col_origin + col_dif;
-    cell = new Cell(canvas, row_dif, col_dif, row, col, side, color);
-    this.cells.push(cell);
+    drow = offset[0];
+    dcol = offset[1];
+    row = row_origin + drow;
+    col = col_origin + dcol;
+    block = new Block(canvas, row, col, color, side, drow, dcol)
+    this.blocks.push(block);
   }
 }
 
 // movement
 Piece.prototype.moveDown = function() {
-  for (i = 0; i < this.cells.length; i++) {
-    this.cells[i].moveDown();
+  for (i = 0; i < this.blocks.length; i++) {
+    this.blocks[i].moveDown();
   }
 };
 
 Piece.prototype.moveLeft = function() {
-  for (i = 0; i < this.cells.length; i++) {
-    this.cells[i].moveLeft();
+  for (i = 0; i < this.blocks.length; i++) {
+    this.blocks[i].moveLeft();
   }
 };
 
 Piece.prototype.moveRight = function() {
-  for (i = 0; i < this.cells.length; i++) {
-    this.cells[i].moveRight();
+  for (i = 0; i < this.blocks.length; i++) {
+    this.blocks[i].moveRight();
   }
 };
 
 // rotation
 Piece.prototype.rotate = function() {
-  for (i = 0; i < this.cells.length; i++) {
-    this.cells[i].rotate();
+  for (i = 0; i < this.blocks.length; i++) {
+    this.blocks[i].rotate();
   }
 };
 
 // ========== data ==========
 
 // data: colors of pieces
-Piece.prototype.colors = [
-  "blue", "green"
-];
+Piece.prototype.colors = [ "aqua", "yellow" ];
 
 // data: sides of pieces
-Piece.prototype.sides = [
-  3, 4
-];
+Piece.prototype.sides = [ 3, 4 ];
 
-// data: offset from SW corner of each block in piece
+// data: offset from NW corner of each block in piece
 Piece.prototype.offsets = [
   [ [0,1], [1,1], [2,1], [2,2] ], // - * -
                                   // - * -
