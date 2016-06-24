@@ -17,6 +17,15 @@ describe("A piece", function() {
     expect(piece.blocks[3].col).toEqual(12);
   });
 
+  it("should move its blocks properly", function() {
+    piece.moveDown();
+    expect(piece.blocks[3].row).toEqual(13);
+    piece.moveRight();
+    expect(piece.blocks[3].col).toEqual(13);
+    piece.moveLeft();
+    expect(piece.blocks[3].col).toEqual(12);
+  });
+
   it("should rotate blocks properly", function() {
     piece.rotate();
     expect(piece.blocks[0].drow).toEqual(1);

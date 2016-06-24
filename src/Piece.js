@@ -28,9 +28,7 @@ function Piece(canvas, row_origin, col_origin, index = null) {
 
 // movement
 Piece.prototype.moveDown = function() {
-  for (i = 0; i < this.blocks.length; i++) {
-    this.blocks[i].moveDown();
-  }
+  this.blocks.map( (block) => { block.moveDown(); } );
 };
 
 Piece.prototype.moveLeft = function() {
