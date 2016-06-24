@@ -27,27 +27,25 @@ function Piece(canvas, row_origin, col_origin, index = null) {
 }
 
 // movement
+Piece.prototype.moveUp = function() {
+  this.blocks.map( (block) => { block.moveUp(); } );
+};
 Piece.prototype.moveDown = function() {
   this.blocks.map( (block) => { block.moveDown(); } );
 };
-
 Piece.prototype.moveLeft = function() {
-  for (i = 0; i < this.blocks.length; i++) {
-    this.blocks[i].moveLeft();
-  }
+  this.blocks.map( (block) => { block.moveLeft(); } );
 };
-
 Piece.prototype.moveRight = function() {
-  for (i = 0; i < this.blocks.length; i++) {
-    this.blocks[i].moveRight();
-  }
+  this.blocks.map( (block) => { block.moveRight(); } );
 };
 
 // rotation
-Piece.prototype.rotate = function() {
-  for (i = 0; i < this.blocks.length; i++) {
-    this.blocks[i].rotate();
-  }
+Piece.prototype.rotateRight = function() {
+  this.blocks.map( (block) => { block.rotateRight(); } );
+};
+Piece.prototype.rotateLeft = function() {
+  this.blocks.map( (block) => { block.rotateLeft(); } );
 };
 
 // ========== data ==========

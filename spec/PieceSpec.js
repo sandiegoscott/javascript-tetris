@@ -26,17 +26,32 @@ describe("A piece", function() {
     expect(piece.blocks[3].col).toEqual(12);
   });
 
-  it("should rotate blocks properly", function() {
-    piece.rotate();
+  it("should rotateRight blocks properly", function() {
+    piece.rotateRight();
     expect(piece.blocks[0].drow).toEqual(1);
     expect(piece.blocks[0].dcol).toEqual(2);
-    piece.rotate();
+    piece.rotateRight();
     expect(piece.blocks[0].drow).toEqual(2);
     expect(piece.blocks[0].dcol).toEqual(1);
-    piece.rotate();
+    piece.rotateRight();
     expect(piece.blocks[0].drow).toEqual(1);
     expect(piece.blocks[0].dcol).toEqual(0);
-    piece.rotate();
+    piece.rotateRight();
+    expect(piece.blocks[0].drow).toEqual(0);
+    expect(piece.blocks[0].dcol).toEqual(1);
+  });
+
+  it("should rotateLeft blocks properly", function() {
+    piece.rotateLeft();
+    expect(piece.blocks[0].drow).toEqual(1);
+    expect(piece.blocks[0].dcol).toEqual(0);
+    piece.rotateLeft();
+    expect(piece.blocks[0].drow).toEqual(2);
+    expect(piece.blocks[0].dcol).toEqual(1);
+    piece.rotateLeft();
+    expect(piece.blocks[0].drow).toEqual(1);
+    expect(piece.blocks[0].dcol).toEqual(2);
+    piece.rotateLeft();
     expect(piece.blocks[0].drow).toEqual(0);
     expect(piece.blocks[0].dcol).toEqual(1);
   });

@@ -27,52 +27,67 @@ describe("A block", function() {
     expect(block.col).toEqual( 8);
   });
 
-  it("should rotate corners properly for 3x3 pieces", function() {
+  it("should rotateRight corners properly for 3x3 pieces", function() {
     //spyOn(block, 'move');
-    block.rotate();
+    block.rotateRight();
     //expect(block.move).toHaveBeenCalled();
     expect(block.row).toEqual(10);
     expect(block.col).toEqual(12);
     expect(block.drow).toEqual(0);
     expect(block.dcol).toEqual(2);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(12);
     expect(block.col).toEqual(12);
     expect(block.drow).toEqual(2);
     expect(block.dcol).toEqual(2);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(12);
     expect(block.col).toEqual(10);
     expect(block.drow).toEqual(2);
     expect(block.dcol).toEqual(0);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(10);
     expect(block.col).toEqual(10);
     expect(block.drow).toEqual(0);
     expect(block.dcol).toEqual(0);
   });
 
-  it("should rotate sides properly for 3x3 pieces", function() {
+  it("should rotateRight sides properly for 3x3 pieces", function() {
     block = new Block(canvas, 10, 11, "#234567", 3, 0, 1 );
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(11);
     expect(block.col).toEqual(12);
     expect(block.drow).toEqual(1);
     expect(block.dcol).toEqual(2);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(12);
     expect(block.col).toEqual(11);
     expect(block.drow).toEqual(2);
     expect(block.dcol).toEqual(1);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(11);
     expect(block.col).toEqual(10);
     expect(block.drow).toEqual(1);
     expect(block.dcol).toEqual(0);
-    block.rotate();
+    block.rotateRight();
     expect(block.row).toEqual(10);
     expect(block.col).toEqual(11);
     expect(block.drow).toEqual(0);
     expect(block.dcol).toEqual(1);
+  });
+
+  it("should leave corner as started for Right then Left rotation for 3x3 pieces", function() {
+    block.rotateRight();
+    block.rotateLeft();
+    expect(block.row).toEqual(10);
+    expect(block.col).toEqual(10);
+  });
+
+  it("should leave side as started for Left then Right rotation for 3x3 pieces", function() {
+    block = new Block(canvas, 10, 11, "#234567", 3, 0, 1 );
+    block.rotateRight();
+    block.rotateLeft();
+    expect(block.row).toEqual(10);
+    expect(block.col).toEqual(11);
   });
 });

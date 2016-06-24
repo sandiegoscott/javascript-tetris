@@ -50,6 +50,9 @@ Block.prototype.collision = function(row, col) {
 Block.prototype.moveDown = function() {
   this.row += 1;
 };
+Block.prototype.moveUp = function() {
+  this.row -= 1;
+};
 Block.prototype.moveRight = function() {
   this.col += 1;
 };
@@ -66,7 +69,7 @@ Block.prototype.move = function(row_chg, col_chg) {
 };
 
 // rotation
-Block.prototype.rotate = function() {
+Block.prototype.rotateRight = function() {
   if (this.side == 3) { // rotate 3x3
     // clockwise around the corners from NW
     if      (this.drow == 0 && this.dcol == 0) { this.move( 0,  2); }
@@ -78,6 +81,23 @@ Block.prototype.rotate = function() {
     else if (this.drow == 1 && this.dcol == 2) { this.move( 1, -1); }
     else if (this.drow == 2 && this.dcol == 1) { this.move(-1, -1); }
     else if (this.drow == 1 && this.dcol == 0) { this.move(-1,  1); }
+  } else {  // (this.side == 4) // rotate 3x3
+
+  }
+};
+
+Block.prototype.rotateLeft = function() {
+  if (this.side == 3) { // rotate 3x3
+    // clockwise around the corners from NW
+    if      (this.drow == 0 && this.dcol == 0) { this.move( 2,  0); }
+    else if (this.drow == 0 && this.dcol == 2) { this.move( 0, -2); }
+    else if (this.drow == 2 && this.dcol == 2) { this.move(-2,  0); }
+    else if (this.drow == 2 && this.dcol == 0) { this.move( 0,  2); }
+    // clockwise around the sides from N
+    if      (this.drow == 0 && this.dcol == 1) { this.move( 1, -1); }
+    else if (this.drow == 1 && this.dcol == 2) { this.move(-1, -1); }
+    else if (this.drow == 2 && this.dcol == 1) { this.move(-1,  1); }
+    else if (this.drow == 1 && this.dcol == 0) { this.move( 1,  1); }
   } else {  // (this.side == 4) // rotate 3x3
 
   }
