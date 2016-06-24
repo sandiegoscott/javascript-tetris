@@ -20,15 +20,24 @@ Canvas.prototype.resize = function() {
 
 // detect collision of piece with blocks of canvas
 Canvas.prototype.collision = function(piece) {
-    for (i = 0; i < piece.blocks.length; i++) {
-      block = piece.blocks[i];
-      for (j = 0; j < this.blocks.length; j++) {
-        if (this.blocks[j].collision(block.row, block.col)) {
-          return true;
-        }
+  for (i = 0; i < piece.blocks.length; i++) {
+    let block = piece.blocks[i];
+    for (j = 0; j < this.blocks.length; j++) {
+      if (this.blocks[j].collision(block.row, block.col)) {
+        return true;
       }
     }
-    return false;
+  }
+  return false;
+}
+
+// detect piece out of bounds
+Canvas.prototype.out_of_bounds = function(piece) {
+  for (i = 0; i < piece.blocks.length; i++) {
+    let block = piece.blocks[i];
+    if (block.col < 0 || block.col > self.cols - 1) { return true; }
+  }
+  return false;
 }
 
 // add block into canvas
