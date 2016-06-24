@@ -26,6 +26,10 @@ function Piece(canvas, row_origin, col_origin, index = null) {
   }
 }
 
+// display
+Piece.prototype.display = function() {
+  this.blocks.map( (block) => { block.display(); } );
+}
 // movement
 Piece.prototype.moveUp = function() {
   this.blocks.map( (block) => { block.moveUp(); } );
