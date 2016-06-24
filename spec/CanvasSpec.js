@@ -11,24 +11,16 @@ describe("A canvas", function() {
   });
 
   it("should have the proper blocks occupied after a piece is added", function() {
-    expect(piece.blocks[3].drow).toEqual(2);
-    expect(piece.blocks[3].dcol).toEqual(2);
-    expect(piece.blocks[3].row).toEqual(12);
-    expect(piece.blocks[3].col).toEqual(12);
     canvas.addPiece(piece);
-    //debugger;
-    expect(canvas.blocks[3].drow).toEqual(2);
-    expect(canvas.blocks[3].dcol).toEqual(2);
-    expect(canvas.blocks[3].row).toEqual(12);
-    expect(canvas.blocks[3].col).toEqual(12);
+    expect(canvas.blocks.length).toEqual(4);
+    expect(canvas.blocks[3]).toEqual(piece.blocks[3]);
   });
 
   it("should collide under certain conditions", function() {
     canvas.addPiece(piece);
-    piece.moveDown();
+    piece = new Piece(canvas, 7, 10, 0);
+    expect(canvas.collision(piece)).toEqual(false);
     piece.moveDown();
     expect(canvas.collision(piece)).toEqual(true);
-    piece.moveDown();
-    expect(canvas.collision(piece)).toEqual(false);
   });
 });

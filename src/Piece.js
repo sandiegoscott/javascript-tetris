@@ -4,6 +4,7 @@ function Piece(canvas, row_origin, col_origin, index = null) {
   //
   var drow, dcol, row, col, side, color, offsets, offset, block;
 
+  this.canvas = canvas;
   // select requested or random Tetris piece
   this.index = (index == 0) ? index : Math.floor(Math.random()*Piece.prototype.offsets.length)
 
