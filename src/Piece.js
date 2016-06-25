@@ -74,6 +74,15 @@ Piece.prototype.outOfBounds = function() {
   return false;
 }
 
+// detect end of canvas
+Piece.prototype.endOfCanvas = function() {
+  for (i = 0; i < this.blocks.length; i++) {
+    let block = this.blocks[i];
+    if (block.row > this.canvas.rows - 1) { return true; }
+  }
+  return false;
+}
+
 // add blocks of piece into canvas
 // !! IMPORTANT !! no new blocks are created!
 Piece.prototype.addToCanvas = function() {

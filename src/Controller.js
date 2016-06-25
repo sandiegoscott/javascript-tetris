@@ -1,3 +1,17 @@
+timeout = function timeout() {
+  setTimeout(function () {
+    piece1.display();
+    piece2.display();
+
+    piece1.moveDown();
+    piece2.rotateRight();
+
+    if (!piece1.endOfCanvas()) {
+      timeout();
+    }
+  }, 800);
+}
+
 function start() {
   var i;
 
@@ -9,15 +23,7 @@ function start() {
   piece1 = new Piece(field, 0, 5, 0);
   piece2 = new Piece(on_deck, 1, 1, 0);
 
-  window.setInterval(function () {
-    piece1.display();
-    piece2.display();
-
-    piece1.moveDown();
-    piece2.rotateRight();
-  }, 800); // repeat forever, polling every 3 seconds
-
-
+  timeout();
   /*
   for (i = 0; i < 16; i += 1) {
     field.addBlock(i, Math.floor(i/2), 'aqua');
