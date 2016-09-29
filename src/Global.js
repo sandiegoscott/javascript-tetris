@@ -1,5 +1,5 @@
 //
-// usefule global functions
+// useful global functions
 //
 function get(id)        { return document.getElementById(id);  }
 function hide(id)       { get(id).style.visibility = 'hidden'; }
